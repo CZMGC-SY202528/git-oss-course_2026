@@ -1,0 +1,57 @@
+name: "Assignment 1 submission — Local Git Practice"
+description: "Submit your Module 1 local Git practice repo for grading."
+title: "[A1 Submission] "
+labels: ["assignment-1", "submission"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Submit this **once**, after completing the Local Git Practice assignment from Module 1.
+        Open this issue in the repo your instructor designates for submissions (or this org's `.github` repo if directed).
+
+  - type: input
+    id: student
+    attributes:
+      label: Your name
+    validations:
+      required: true
+
+  - type: dropdown
+    id: team
+    attributes:
+      label: Team
+      options:
+        - SY-A
+        - SY-B
+        - SY-C
+    validations:
+      required: true
+
+  - type: input
+    id: repo-link
+    attributes:
+      label: Link to your practice repository
+      description: Push your local practice repo to your own GitHub account and paste the link here.
+      placeholder: "https://github.com/<your-username>/git-practice"
+    validations:
+      required: true
+
+  - type: textarea
+    id: log-output
+    attributes:
+      label: Paste the output of `git log --oneline --graph --all`
+      render: text
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Confirm your repo includes
+      options:
+        - label: At least 3 commits with clear, imperative messages
+          required: true
+        - label: At least 1 branch created and merged back into main
+          required: true
+        - label: One merge conflict created and resolved by hand (not auto-resolved by an editor)
+          required: true

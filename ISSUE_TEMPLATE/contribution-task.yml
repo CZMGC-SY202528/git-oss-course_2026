@@ -1,0 +1,61 @@
+name: "Contribution task (bug / feature)"
+description: "File a task for a teammate to pick up — used for Assignment 2, Module 2."
+title: "[Task]: "
+labels: ["needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this for **Assignment 2**. Fill it out, then assign it to your partner from the sidebar.
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type
+      options:
+        - Bug
+        - Feature request
+        - Task / chore
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What's wrong or wanted?
+      description: Be specific enough that someone else could act on this without asking you questions first.
+      placeholder: "e.g. The signup form accepts invalid email addresses with no validation."
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce (if a bug) or acceptance criteria (if a feature)
+      placeholder: |
+        1. Go to ...
+        2. Enter ...
+        3. Observe ...
+    validations:
+      required: false
+
+  - type: dropdown
+    id: team
+    attributes:
+      label: Team
+      options:
+        - SY-A
+        - SY-B
+        - SY-C
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Before submitting
+      options:
+        - label: I've written a short, specific title (not "there's a bug")
+          required: true
+        - label: I've assigned this issue to whoever will work on it
+          required: true
