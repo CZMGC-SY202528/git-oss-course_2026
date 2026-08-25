@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 1: Git Fundamentals — Git &amp; Open Source Course</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">git<span class="dim">--course</span></div>
+    <nav class="crumbs">
+      <a href="index.html">Home</a>
+      <a href="module1.html">Module 1</a>
+      <a href="module2.html">Module 2</a>
+      <a href="assignments.html">Assignments</a>
+      <a href="certificate.html">Certificate</a>
+    </nav>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <div class="eyebrow">Module 1 of 2</div>
+  <h1>Git Fundamentals</h1>
+  <p class="lede">Repositories, commits, branches, and merges — done entirely on your own machine, so the mental model is solid before GitHub enters the picture.</p>
+
+  <h2>Git vs. GitHub</h2>
+  <p><strong>Git</strong> is the version control tool: it runs on your machine, works offline, and tracks every change you make. <strong>GitHub</strong> is a hosting service for Git repositories that adds collaboration features — issues, pull requests, code review. You'll use plain Git in this module and add GitHub in Module 2.</p>
+
+  <h2>The three areas</h2>
+  <p>Every file in a Git repository moves through three places:</p>
+  <table>
+    <tr><th>Area</th><th>What it means</th><th>Command that moves it here</th></tr>
+    <tr><td>Working directory</td><td>The files you're editing right now</td><td>— (you just save the file)</td></tr>
+    <tr><td>Staging area</td><td>Changes marked "ready to be committed"</td><td><code>git add &lt;file&gt;</code></td></tr>
+    <tr><td>Repository (history)</td><td>Permanent snapshots</td><td><code>git commit -m "message"</code></td></tr>
+  </table>
+
+  <h2>Repositories &amp; your first commits</h2>
+  <pre><code><span class="comment"># start tracking a folder</span>
+mkdir git-practice &amp;&amp; cd git-practice
+git init
+
+<span class="comment"># set your identity once per machine</span>
+git config --global user.name "Student Name"
+git config --global user.email "student@example.com"
+
+echo "# My Practice Repo" &gt; README.md
+git status                 <span class="comment"># README.md is untracked</span>
+git add README.md
+git status                 <span class="comment"># README.md is staged</span>
+git commit -m "Initial commit: add README"
+git log                    <span class="comment"># see the commit</span></code></pre>
+
+  <div class="callout">
+    <span class="label">Try it</span>
+    Edit <code>README.md</code> again and run <code>git diff</code> before staging, then <code>git diff --staged</code> after. Watch how the same change appears in a different place depending on whether it's staged.
+  </div>
+
+  <h2>Branches</h2>
+  <p>A branch is a movable pointer to a commit. <code>main</code> is just a branch by convention — nothing in Git treats it as special. Branching is cheap, so branch often.</p>
+  <pre><code>git branch                        <span class="comment"># list branches</span>
+git checkout -b feature/about     <span class="comment"># create + switch in one step</span>
+echo "This project teaches Git." &gt;&gt; README.md
+git add README.md
+git commit -m "Add about section to README"
+git log --oneline --graph --all   <span class="comment"># visualize the branches diverging</span></code></pre>
+  <p>Switch back with <code>git checkout main</code> — the change disappears from view, but it isn't lost. It's isolated on <code>feature/about</code> until you merge it.</p>
+
+  <h2>Merging</h2>
+  <pre><code>git checkout main
+git merge feature/about
+git branch -d feature/about       <span class="comment"># delete once merged</span></code></pre>
+  <p>If <code>main</code> hasn't moved since the branch was created, this is a <strong>fast-forward</strong> merge — Git just slides the pointer forward. If both branches have new commits, Git creates a real merge commit with two parents.</p>
+
+  <h2>Merge conflicts</h2>
+  <p>A conflict happens when two branches change the <em>same lines</em> differently. Git can't guess which version you want, so it stops and asks:</p>
+  <pre><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+<span class="diff-add">your main branch's version</span>
+=======
+<span class="diff-del">the incoming branch's version</span>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; feature/conflict</code></pre>
+  <p>Edit the file to keep what you want, delete the marker lines, then:</p>
+  <pre><code>git add README.md
+git commit</code></pre>
+
+  <div class="callout warn">
+    <span class="label">Common mistake</span>
+    Panicking at a conflict. It's Git's normal behavior when two people (or two branches) touch the same line — not an error state. Read both versions, decide, remove the markers, commit.
+  </div>
+
+  <h2>Command reference</h2>
+  <pre><code>git init                            <span class="comment"># start tracking a new folder</span>
+git clone &lt;url&gt;                     <span class="comment"># copy a remote repo locally</span>
+git status                          <span class="comment"># what's changed / staged</span>
+git add &lt;file&gt;   /   git add .      <span class="comment"># stage changes</span>
+git commit -m "message"             <span class="comment"># snapshot staged changes</span>
+git log --oneline --graph --all     <span class="comment"># visual history</span>
+
+git branch                          <span class="comment"># list branches</span>
+git checkout -b &lt;name&gt;              <span class="comment"># create + switch</span>
+git branch -d &lt;name&gt;                <span class="comment"># delete a merged branch</span>
+git merge &lt;branch&gt;                  <span class="comment"># merge into current branch</span></code></pre>
+
+  <h2>Quiz — check your understanding</h2>
+  <form id="quiz1" class="quiz">
+
+    <div class="quiz-q" data-correct="b">
+      <div class="qtext">1. What does <code>git add</code> actually do?</div>
+      <label><input type="radio" name="q1" value="a"> Permanently saves the file to history</label>
+      <label><input type="radio" name="q1" value="b"> Moves the change into the staging area</label>
+      <label><input type="radio" name="q1" value="c"> Uploads the file to GitHub</label>
+      <label><input type="radio" name="q1" value="d"> Creates a new branch</label>
+      <div class="fb ok">Correct — staging marks a change as ready to commit; it isn't history yet.</div>
+      <div class="fb bad">Not quite — <code>git add</code> only stages the change; <code>git commit</code> saves it to history.</div>
+    </div>
+
+    <div class="quiz-q" data-correct="c">
+      <div class="qtext">2. In Git, what is a branch?</div>
+      <label><input type="radio" name="q2" value="a"> A full copy of the repository</label>
+      <label><input type="radio" name="q2" value="b"> A special, hard-coded feature only <code>main</code> can use</label>
+      <label><input type="radio" name="q2" value="c"> A movable pointer to a commit</label>
+      <label><input type="radio" name="q2" value="d"> A backup of the staging area</label>
+      <div class="fb ok">Correct — a branch is just a lightweight, movable pointer. That's why branching is cheap.</div>
+      <div class="fb bad">Not quite — a branch doesn't copy anything; it's a pointer to a commit.</div>
+    </div>
+
+    <div class="quiz-q" data-correct="b">
+      <div class="qtext">3. When does a merge conflict happen?</div>
+      <label><input type="radio" name="q3" value="a"> Whenever you merge two branches</label>
+      <label><input type="radio" name="q3" value="b"> When both branches changed the same lines differently</label>
+      <label><input type="radio" name="q3" value="c"> Only when merging with GitHub</label>
+      <label><input type="radio" name="q3" value="d"> When you forget to run <code>git init</code></label>
+      <div class="fb ok">Correct — Git can auto-merge non-overlapping changes; conflicts only occur on overlapping edits.</div>
+      <div class="fb bad">Not quite — most merges are automatic. Conflicts only happen on overlapping line changes.</div>
+    </div>
+
+    <div class="quiz-q" data-correct="a">
+      <div class="qtext">4. What's the difference between Git and GitHub?</div>
+      <label><input type="radio" name="q4" value="a"> Git is the version control tool; GitHub is a hosting service built on top of it</label>
+      <label><input type="radio" name="q4" value="b"> They are the same thing</label>
+      <label><input type="radio" name="q4" value="c"> GitHub replaces the need for Git</label>
+      <label><input type="radio" name="q4" value="d"> Git only works online</label>
+      <div class="fb ok">Correct.</div>
+      <div class="fb bad">Not quite — Git works fully offline; GitHub adds hosting and collaboration on top.</div>
+    </div>
+
+    <div class="quiz-q" data-correct="d">
+      <div class="qtext">5. Which command shows staged changes only?</div>
+      <label><input type="radio" name="q5" value="a"> git status</label>
+      <label><input type="radio" name="q5" value="b"> git log</label>
+      <label><input type="radio" name="q5" value="c"> git diff</label>
+      <label><input type="radio" name="q5" value="d"> git diff --staged</label>
+      <div class="fb ok">Correct — <code>git diff</code> alone shows unstaged changes; add <code>--staged</code> to see what's staged.</div>
+      <div class="fb bad">Not quite — plain <code>git diff</code> shows unstaged changes. Add <code>--staged</code> for what's in the staging area.</div>
+    </div>
+
+    <div style="display:flex; gap:10px; margin-top:8px;">
+      <button type="button" class="btn check-btn">Check answers</button>
+      <button type="button" class="btn secondary reset-btn">Reset</button>
+    </div>
+    <div id="quiz-score"></div>
+  </form>
+
+  <div class="callout tip">
+    <span class="label">Next</span>
+    Once branching, committing, and merging feel natural, move to <a href="module2.html">Module 2: Contributing to Open Source</a>, where the same ideas apply through pull requests.
+  </div>
+
+</main>
+
+<footer>CZMGC-SY202528 · Open Source Tools, Git &amp; GitHub · built for GitHub Pages</footer>
+
+<script src="assets/script.js"></script>
+<script>initQuiz('quiz1');</script>
+</body>
+</html>

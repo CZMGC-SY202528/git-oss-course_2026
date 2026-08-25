@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 2: Contributing to Open Source — Git &amp; Open Source Course</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">git<span class="dim">--course</span></div>
+    <nav class="crumbs">
+      <a href="index.html">Home</a>
+      <a href="module1.html">Module 1</a>
+      <a href="module2.html">Module 2</a>
+      <a href="assignments.html">Assignments</a>
+      <a href="certificate.html">Certificate</a>
+    </nav>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <div class="eyebrow">Module 2 of 2</div>
+  <h1>Contributing to Open Source</h1>
+  <p class="lede">Issue tracking, pull requests, and code review — the workflow every real open-source project runs on, practiced on our own GitHub organization: <code>CZMGC-SY202528</code>.</p>
+
+  <h2>Issue tracking</h2>
+  <p>An issue is a tracked unit of work: a bug report, a feature request, or a task. Good issues are specific enough that someone else could pick them up without asking you questions first.</p>
+  <table>
+    <tr><th>Field</th><th>Purpose</th></tr>
+    <tr><td>Title</td><td>Short, imperative — "Fix broken email validation," not "there's a bug somewhere"</td></tr>
+    <tr><td>Description</td><td>What's wrong or wanted, and how to reproduce or verify it</td></tr>
+    <tr><td>Labels</td><td><code>bug</code>, <code>enhancement</code>, <code>good first issue</code>, etc.</td></tr>
+    <tr><td>Assignee</td><td>Who's doing the work</td></tr>
+  </table>
+
+  <h2>Branch → change → push</h2>
+  <p>Never commit straight to <code>main</code>. Every contribution starts on its own branch:</p>
+  <pre><code>git checkout main
+git pull origin main                       <span class="comment"># start from the latest</span>
+
+git checkout -b fix/email-validation
+<span class="comment"># ...make the change...</span>
+git add .
+git commit -m "Add regex validation for email field"
+git push -u origin fix/email-validation</code></pre>
+
+  <h2>Opening a pull request</h2>
+  <p>A pull request (PR) is a diff-based proposal to merge your branch into <code>main</code>. Write the description so a reviewer understands <em>what</em> changed and <em>why</em> without reading the whole diff first:</p>
+  <pre><code>## What
+Adds regex-based email validation on the signup form
+
+## Why
+Closes #12
+
+## How to test
+1. Enter an invalid email
+2. Confirm the error message appears</code></pre>
+  <div class="callout tip">
+    <span class="label">Tip</span>
+    Writing <code>Closes #12</code> in the PR description links it to the issue — the issue closes automatically when the PR merges.
+  </div>
+
+  <h2>Code review</h2>
+  <p>Reviewing is about correctness, readability, and shared understanding — not gatekeeping. A review ends in one of three states:</p>
+  <table>
+    <tr><th>Verdict</th><th>Meaning</th></tr>
+    <tr><td>Comment</td><td>Feedback, no blocking opinion either way</td></tr>
+    <tr><td>Request changes</td><td>Something needs fixing before merge</td></tr>
+    <tr><td>Approve</td><td>Safe to merge — doesn't mean flawless, means good enough to ship and iterate on</td></tr>
+  </table>
+  <p>Good review comments are specific and point to a line, and phrased as a question or suggestion rather than a command:</p>
+  <ul>
+    <li><code>nit:</code> minor/style — take it or leave it</li>
+    <li><code>question:</code> genuinely asking, not a disguised objection</li>
+    <li><code>suggestion:</code> a concrete alternative</li>
+    <li><code>blocking:</code> this must change before merge</li>
+  </ul>
+
+  <h2>The full cycle on <code>CZMGC-SY202528</code></h2>
+  <p>Branch protection on your team repo requires a PR and at least one approval before anything reaches <code>main</code> — so this cycle isn't optional, it's how the repo works:</p>
+  <table>
+    <tr><th>Step</th><th>Who</th><th>Action</th></tr>
+    <tr><td>1</td><td>Student A</td><td>Opens an issue describing a bug/feature</td></tr>
+    <tr><td>2</td><td>Student A</td><td>Assigns it to Student B, adds a label</td></tr>
+    <tr><td>3</td><td>Student B</td><td>Branches, makes the change, pushes</td></tr>
+    <tr><td>4</td><td>Student B</td><td>Opens a PR with <code>Closes #&lt;n&gt;</code></td></tr>
+    <tr><td>5</td><td>Student A</td><td>Reviews — at least one question, one suggestion — then requests changes</td></tr>
+    <tr><td>6</td><td>Student B</td><td>Pushes a follow-up commit addressing feedback</td></tr>
+    <tr><td>7</td><td>Student A</td><td>Approves</td></tr>
+    <tr><td>8</td><td>Either</td><td>Squash &amp; merge — issue auto-closes</td></tr>
+  </table>
+
+  <div class="callout warn">
+    <span class="label">Common mistake</span>
+    Forgetting <code>Closes #12</code> in the PR — the issue won't auto-close on merge, and you'll have to close it by hand.
+  </div>
+
+  <h2>Quiz — check your understanding</h2>
+  <form id="quiz2" class="quiz">
+
+    <div class="quiz-q" data-correct="c">
+      <div class="qtext">1. What does writing "Closes #12" in a PR description do?</div>
+      <label><input type="radio" name="q1" value="a"> Deletes issue 12</label>
+      <label><input type="radio" name="q1" value="b"> Nothing — it's just a comment</label>
+      <label><input type="radio" name="q1" value="c"> Automatically closes issue 12 when the PR merges</label>
+      <label><input type="radio" name="q1" value="d"> Assigns issue 12 to the PR author</label>
+      <div class="fb ok">Correct — GitHub links and auto-closes the issue on merge.</div>
+      <div class="fb bad">Not quite — that phrasing is a GitHub convention that auto-closes the linked issue on merge.</div>
+    </div>
+
+    <div class="quiz-q" data-correct="b">
+      <div class="qtext">2. What does "Request changes" mean during a review?</div>
+      <label><input type="radio" name="q2" value="a"> The PR is rejected permanently</label>
+      <label><input type="radio" name="q2" value="b"> Something needs fixing before this can merge</label>
+      <label><input type="radio" name="q2" value="c"> The reviewer wants to take over the branch</label>
+      <label><input type="radio" name="q2" value="d"> The issue should be closed</label>
+      <div class="fb ok">Correct.</div>
+      <div class="fb bad">Not quite — it's feedback that blocks merge until addressed, not a rejection.</div>
+    </div>
+
+    <div class="quiz-q" data-correct="a">
+      <div class="qtext">3. Why does branch protection on <code>main</code> matter for this workflow?</div>
+      <label><input type="radio" name="q3" value="a"> It requires a PR and approval before anything merges to main</label>
+      <label><input type="radio" name="q3" value="b"> It prevents anyone from ever branching</label>
+      <label><input type="radio" name="q3" value="c"> It automatically writes commit messages</label>
+      <label><input type="radio" name="q3" value="d"> It deletes issues after 30 days</label>
+      <div class="fb ok">Correct — it makes the issue → PR → review cycle mandatory rather than optional.</div>
+      <div class="fb bad">Not quite — branch protection enforces review before merge; it doesn't touch branching or issues directly.</div>
+    </div>
+
+    <div class="quiz-q" data-correct="d">
+      <div class="qtext">4. What makes a good issue title?</div>
+      <label><input type="radio" name="q4" value="a"> "there's a problem"</label>
+      <label><input type="radio" name="q4" value="b"> "URGENT!!!"</label>
+      <label><input type="radio" name="q4" value="c"> Left blank</label>
+      <label><input type="radio" name="q4" value="d"> Short and imperative, e.g. "Fix broken email validation"</label>
+      <div class="fb ok">Correct.</div>
+      <div class="fb bad">Not quite — a good title is specific enough that someone else could act on it without asking you first.</div>
+    </div>
+
+    <div class="quiz-q" data-correct="b">
+      <div class="qtext">5. What does "Approve" mean on a PR?</div>
+      <label><input type="radio" name="q5" value="a"> The code is perfect and can never be changed again</label>
+      <label><input type="radio" name="q5" value="b"> It's safe to merge; further iteration can still happen later</label>
+      <label><input type="radio" name="q5" value="c"> The issue is automatically deleted</label>
+      <label><input type="radio" name="q5" value="d"> The reviewer will now write the code themselves</label>
+      <div class="fb ok">Correct.</div>
+      <div class="fb bad">Not quite — approval means "good enough to ship," not "flawless."</div>
+    </div>
+
+    <div style="display:flex; gap:10px; margin-top:8px;">
+      <button type="button" class="btn check-btn">Check answers</button>
+      <button type="button" class="btn secondary reset-btn">Reset</button>
+    </div>
+    <div id="quiz-score"></div>
+  </form>
+
+  <div class="callout tip">
+    <span class="label">Next</span>
+    Ready to practice for real? Head to <a href="assignments.html">Assignments</a> and run this cycle on your team repo.
+  </div>
+
+</main>
+
+<footer>CZMGC-SY202528 · Open Source Tools, Git &amp; GitHub · built for GitHub Pages</footer>
+
+<script src="assets/script.js"></script>
+<script>initQuiz('quiz2');</script>
+</body>
+</html>

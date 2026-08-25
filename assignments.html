@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assignments — Git &amp; Open Source Course</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">git<span class="dim">--course</span></div>
+    <nav class="crumbs">
+      <a href="index.html">Home</a>
+      <a href="module1.html">Module 1</a>
+      <a href="module2.html">Module 2</a>
+      <a href="assignments.html">Assignments</a>
+      <a href="certificate.html">Certificate</a>
+    </nav>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <div class="eyebrow">Graded work</div>
+  <h1>Assignments</h1>
+  <p class="lede">One assignment per module. Assignment 1 is done locally; Assignment 2 is done for real, on your team's repo in <code>CZMGC-SY202528</code>.</p>
+
+  <div class="assignment">
+    <div class="badge-row"><span class="badge">Pairs with Module 1</span></div>
+    <h2>Assignment 1 — Local Git Practice</h2>
+    <p>Build a small local repository that demonstrates every core Git operation from Module 1.</p>
+    <h3>What to submit</h3>
+    <ul>
+      <li>Push your practice repo to your own personal GitHub account (public or unlisted).</li>
+      <li>Submit using the <strong>"Assignment 1 submission" issue form</strong> in the org (Issues → New issue → Assignment 1 submission) instead of pasting links in chat — it asks for your repo link and your <code>git log --graph</code> output directly.</li>
+    </ul>
+    <h3>Requirements</h3>
+    <ul>
+      <li>Repository initialized with <code>git init</code></li>
+      <li>At least <strong>3 commits</strong> with clear, imperative commit messages</li>
+      <li>At least <strong>1 branch</strong> created, used, and merged back into <code>main</code></li>
+      <li>One deliberately created and <strong>manually resolved merge conflict</strong> (edit the same line on two branches, merge, resolve by hand — don't let an editor auto-resolve it for you)</li>
+    </ul>
+    <table class="rubric">
+      <tr><th>Criteria</th><th>Points</th></tr>
+      <tr><td>Repo initialized correctly</td><td>10</td></tr>
+      <tr><td>3+ meaningful commits with clear messages</td><td>25</td></tr>
+      <tr><td>Branch created and merged correctly</td><td>20</td></tr>
+      <tr><td>Merge conflict resolved by hand</td><td>25</td></tr>
+      <tr><td>Submission link/screenshot is complete and readable</td><td>20</td></tr>
+    </table>
+  </div>
+
+  <div class="assignment">
+    <div class="badge-row"><span class="badge">Pairs with Module 2</span></div>
+    <h2>Assignment 2 — Contribution Cycle</h2>
+    <p>Run the full issue → branch → PR → review → merge cycle on your team's repo in <code>CZMGC-SY202528</code>, paired with a classmate.</p>
+    <h3>What to submit</h3>
+    <ul>
+      <li>File the task using the <strong>"Contribution task" issue form</strong> in your team's repo (Issues → New issue) — it already asks for type, description, and team.</li>
+      <li>Open your PR — the description box is pre-filled with the What / Why / How-to-test template and a checklist, so you can't forget <code>Closes #</code>.</li>
+      <li>Then record both links on your <a href="certificate.html">completion certificate</a> for grading.</li>
+    </ul>
+    <h3>Requirements</h3>
+    <ul>
+      <li>File one clear, labeled issue and assign it to your partner</li>
+      <li>Create a properly named branch (e.g. <code>fix/&lt;short-description&gt;</code>) — no direct commits to <code>main</code></li>
+      <li>Open a PR with a description that includes <code>Closes #&lt;issue-number&gt;</code></li>
+      <li>Leave at least two review comments on your partner's PR (one <code>question:</code>, one <code>suggestion:</code>)</li>
+      <li>Respond to review feedback with a follow-up commit before merge</li>
+    </ul>
+    <table class="rubric">
+      <tr><th>Criteria</th><th>Points</th></tr>
+      <tr><td>Clear, well-labeled issue</td><td>20</td></tr>
+      <tr><td>Properly named branch (no direct commits to main)</td><td>15</td></tr>
+      <tr><td>PR description links the issue</td><td>20</td></tr>
+      <tr><td>Meaningful review comments left on a partner's PR</td><td>25</td></tr>
+      <tr><td>Responded to feedback with a follow-up commit</td><td>20</td></tr>
+    </table>
+    <div class="callout warn">
+      <span class="label">Reminder</span>
+      Branch protection on the team repo requires an approval before merge — you cannot skip the review step even if you wanted to.
+    </div>
+  </div>
+
+</main>
+
+<footer>CZMGC-SY202528 · Open Source Tools, Git &amp; GitHub · built for GitHub Pages</footer>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

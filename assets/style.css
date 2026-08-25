@@ -1,0 +1,211 @@
+/* ============================================================
+   Git & Open Source Contribution — Course Design System
+   Palette drawn from Git's own diff language: additions (green),
+   deletions (red), modifications (amber), refs/branches (blue).
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap');
+
+:root{
+  --bg: #10151b;
+  --bg-raised: #171e27;
+  --bg-inset: #0c1015;
+  --line: #29323d;
+  --text: #e6edf3;
+  --muted: #8b98a5;
+
+  --green:  #3fb950;
+  --green-dim: #1a2e1f;
+  --red:    #f85149;
+  --red-dim: #331b1a;
+  --amber:  #d29922;
+  --amber-dim: #332a12;
+  --blue:   #58a6dc;
+  --blue-dim: #172633;
+
+  --mono: 'JetBrains Mono', ui-monospace, monospace;
+  --serif: 'Source Serif 4', Georgia, serif;
+
+  --radius: 3px;
+}
+
+*{ box-sizing: border-box; }
+html{ scroll-behavior: smooth; }
+
+body{
+  margin:0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+a{ color: var(--blue); text-decoration: none; }
+a:hover{ text-decoration: underline; }
+a:focus-visible, button:focus-visible, input:focus-visible{
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+::selection{ background: var(--amber-dim); color: var(--text); }
+
+/* ---------- Layout shell ---------- */
+.wrap{ max-width: 860px; margin: 0 auto; padding: 0 24px; }
+
+.topbar{
+  border-bottom: 1px solid var(--line);
+  background: rgba(16,21,27,0.92);
+  backdrop-filter: blur(6px);
+  position: sticky; top:0; z-index: 50;
+}
+.topbar-inner{
+  max-width: 860px; margin: 0 auto; padding: 14px 24px;
+  display:flex; align-items:center; justify-content:space-between;
+  gap: 16px; flex-wrap: wrap;
+}
+.brand{
+  font-family: var(--mono); font-weight:700; font-size: 15px;
+  color: var(--text); letter-spacing: 0.2px;
+}
+.brand .dim{ color: var(--muted); font-weight: 500; }
+nav.crumbs{ display:flex; gap: 18px; font-family: var(--mono); font-size: 13px; }
+nav.crumbs a{ color: var(--muted); }
+nav.crumbs a.active, nav.crumbs a:hover{ color: var(--text); }
+
+main{ padding: 48px 0 96px; }
+footer{
+  border-top: 1px solid var(--line);
+  padding: 28px 24px; text-align:center;
+  color: var(--muted); font-family: var(--mono); font-size: 12px;
+}
+
+/* ---------- Typography ---------- */
+h1,h2,h3,h4{ font-family: var(--mono); font-weight: 700; line-height: 1.25; color: var(--text); }
+h1{ font-size: 34px; letter-spacing: -0.3px; margin: 0 0 6px; }
+h2{ font-size: 22px; margin: 48px 0 14px; padding-top: 14px; border-top: 1px solid var(--line); }
+h2:first-child{ border-top: none; padding-top:0; margin-top:0;}
+h3{ font-size: 16px; margin: 26px 0 10px; color: var(--blue); }
+p{ margin: 0 0 16px; color: var(--text); }
+.lede{ color: var(--muted); font-size: 18px; margin: 0 0 28px; }
+.eyebrow{
+  font-family: var(--mono); font-size: 12px; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 10px;
+  display:flex; align-items:center; gap:8px;
+}
+.eyebrow::before{ content:"//"; color: var(--green); }
+
+code, pre, .kbd{ font-family: var(--mono); }
+code{
+  background: var(--bg-inset); border:1px solid var(--line);
+  padding: 1px 6px; border-radius: var(--radius); font-size: 0.88em;
+}
+pre{
+  background: var(--bg-inset); border:1px solid var(--line);
+  border-radius: var(--radius); padding: 16px 18px; overflow-x:auto;
+  font-size: 13.5px; line-height: 1.6; margin: 0 0 20px;
+}
+pre code{ background:none; border:none; padding:0; }
+.diff-add{ color: var(--green); }
+.diff-del{ color: var(--red); }
+.comment{ color: var(--muted); }
+
+table{ width:100%; border-collapse: collapse; margin: 0 0 24px; font-size: 15px; }
+th,td{ text-align:left; padding: 9px 12px; border-bottom: 1px solid var(--line); vertical-align: top;}
+th{ font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); }
+
+ul,ol{ padding-left: 22px; margin: 0 0 16px;}
+li{ margin-bottom: 6px; }
+
+.callout{
+  border: 1px solid var(--line); border-left: 3px solid var(--amber);
+  background: var(--bg-raised); border-radius: var(--radius);
+  padding: 14px 18px; margin: 0 0 24px; font-size: 15.5px;
+}
+.callout.warn{ border-left-color: var(--red); }
+.callout.tip{ border-left-color: var(--green); }
+.callout .label{
+  font-family: var(--mono); font-size: 11px; text-transform:uppercase;
+  letter-spacing: 1px; color: var(--muted); display:block; margin-bottom:6px;
+}
+
+/* ---------- Home hero + graph ---------- */
+.hero{ padding: 56px 0 20px; }
+.hero h1{ font-size: 42px; }
+.badge-row{ display:flex; gap:8px; flex-wrap:wrap; margin: 18px 0 8px; }
+.badge{
+  font-family: var(--mono); font-size: 11.5px; padding: 4px 10px;
+  border-radius: 999px; border:1px solid var(--line); color: var(--muted);
+}
+
+.graph-wrap{ margin: 36px 0 44px; }
+.graph-wrap svg{ width:100%; height:auto; display:block; }
+.graph-caption{ text-align:center; color: var(--muted); font-family: var(--mono); font-size: 12px; margin-top:10px;}
+
+/* ---------- Module cards ---------- */
+.module-grid{ display:grid; gap:16px; margin: 8px 0 40px; }
+.module-card{
+  border:1px solid var(--line); background: var(--bg-raised);
+  border-radius: var(--radius); padding: 20px 22px;
+  display:flex; gap:18px; align-items:flex-start;
+}
+.module-card .tag{
+  font-family: var(--mono); font-size: 12px; color: var(--bg);
+  background: var(--green); padding: 3px 8px; border-radius: var(--radius);
+  white-space:nowrap; font-weight:700;
+}
+.module-card .tag.blue{ background: var(--blue); }
+.module-card .tag.amber{ background: var(--amber); }
+.module-card h3{ margin: 0 0 6px; color: var(--text); font-size:17px;}
+.module-card p{ margin:0; color: var(--muted); font-size: 14.5px;}
+.module-card a.go{ font-family: var(--mono); font-size: 13px; margin-top:8px; display:inline-block;}
+
+/* ---------- Quiz ---------- */
+.quiz{
+  border:1px solid var(--line); border-radius: var(--radius);
+  background: var(--bg-raised); padding: 28px 26px; margin: 40px 0;
+}
+.quiz-q{ margin-bottom: 22px; padding-bottom: 20px; border-bottom: 1px dashed var(--line); }
+.quiz-q:last-of-type{ border-bottom:none; }
+.quiz-q .qtext{ font-weight:600; margin-bottom: 10px; color: var(--text); }
+.quiz-q label{
+  display:block; padding: 8px 12px; margin-bottom:6px;
+  border:1px solid var(--line); border-radius: var(--radius);
+  cursor:pointer; font-size: 14.5px; transition: border-color .15s;
+}
+.quiz-q label:hover{ border-color: var(--blue); }
+.quiz-q input{ margin-right:10px; }
+.quiz-q.correct label.chosen{ border-color: var(--green); background: var(--green-dim); }
+.quiz-q.incorrect label.chosen{ border-color: var(--red); background: var(--red-dim); }
+.quiz-q .fb{ font-family: var(--mono); font-size: 12.5px; margin-top:8px; display:none; }
+.quiz-q.correct .fb.ok{ display:block; color: var(--green); }
+.quiz-q.incorrect .fb.bad{ display:block; color: var(--red); }
+
+.btn{
+  font-family: var(--mono); font-size: 14px; font-weight:600;
+  background: var(--green); color: #06170a; border:none;
+  padding: 11px 20px; border-radius: var(--radius); cursor:pointer;
+}
+.btn:hover{ filter: brightness(1.08); }
+.btn.secondary{ background: transparent; border:1px solid var(--line); color: var(--text); }
+
+#quiz-score{
+  font-family: var(--mono); margin-top: 18px; font-size: 14px; color: var(--text);
+  padding: 12px 14px; border-radius: var(--radius); background: var(--bg-inset);
+  border:1px solid var(--line); display:none;
+}
+
+/* ---------- Assignments ---------- */
+.assignment{
+  border:1px solid var(--line); border-radius: var(--radius);
+  padding: 24px 26px; margin: 0 0 32px; background: var(--bg-raised);
+}
+.assignment h2{ margin-top:0; border-top:none; padding-top:0; }
+.rubric td:last-child, .rubric th:last-child{ text-align:right; width: 90px;}
+
+@media (max-width: 600px){
+  .hero h1{ font-size: 30px; }
+  h2{ font-size: 19px; }
+  .module-card{ flex-direction: column; }
+}

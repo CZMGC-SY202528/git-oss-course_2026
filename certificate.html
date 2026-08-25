@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Certificate — Git &amp; Open Source Course</title>
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  @media print{
+    .topbar, .no-print, footer{ display:none !important; }
+    body{ background:#fff; color:#111; }
+    .cert{ border-color:#111 !important; box-shadow:none !important; }
+    .cert *{ color:#111 !important; }
+    .cert .accent{ color:#166b2e !important; }
+  }
+  .form-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 14px 16px; margin-bottom: 22px; }
+  .form-grid .full{ grid-column: 1 / -1; }
+  .form-grid label{ display:block; font-family: var(--mono); font-size:12px; color: var(--muted); margin-bottom:5px; text-transform:uppercase; letter-spacing: .5px;}
+  .form-grid input, .form-grid select{
+    width:100%; background: var(--bg-inset); border:1px solid var(--line); color: var(--text);
+    padding: 9px 10px; border-radius: var(--radius); font-family: var(--serif); font-size:15px;
+  }
+  .cert{
+    border: 2px solid var(--green); border-radius: var(--radius);
+    background: var(--bg-raised); padding: 44px 40px; margin: 30px 0;
+    display:none;
+  }
+  .cert.show{ display:block; }
+  .cert .k{ font-family: var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:1.5px; color: var(--muted); }
+  .cert h2{ border:none; margin: 2px 0 4px; padding:0; font-size:26px; }
+  .cert .name{ font-family: var(--serif); font-size: 30px; font-weight:700; margin: 4px 0 22px; }
+  .cert-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 18px 30px; margin: 24px 0; }
+  .cert-row{ border-bottom: 1px dashed var(--line); padding-bottom: 10px; }
+  .cert-row .v{ font-family: var(--mono); font-size: 15px; margin-top:4px; }
+  .cert-links a{ display:block; font-family: var(--mono); font-size: 13px; word-break: break-all; margin-top:4px;}
+  .cert-foot{ display:flex; justify-content: space-between; align-items:flex-end; margin-top: 34px; padding-top:18px; border-top: 1px solid var(--line); }
+  .seal{ font-family: var(--mono); font-size:12px; color: var(--green); }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">git<span class="dim">--course</span></div>
+    <nav class="crumbs">
+      <a href="index.html">Home</a>
+      <a href="module1.html">Module 1</a>
+      <a href="module2.html">Module 2</a>
+      <a href="assignments.html">Assignments</a>
+      <a href="certificate.html">Certificate</a>
+    </nav>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <div class="eyebrow">Wrap-up</div>
+  <h1>Completion Certificate</h1>
+  <p class="lede">Fill this in after finishing both modules, both quizzes, and both assignments — then print or save as PDF for your portfolio, or for your instructor's records.</p>
+
+  <form id="cert-form" class="no-print" onsubmit="return false;">
+    <div class="form-grid">
+      <div><label for="f-name">Student name</label><input id="f-name" type="text" placeholder="e.g. Priya Patel" required></div>
+      <div><label for="f-team">Team</label>
+        <select id="f-team">
+          <option>SY-A</option><option>SY-B</option><option>SY-C</option>
+        </select>
+      </div>
+      <div><label for="f-q1">Module 1 quiz score</label><input id="f-q1" type="text" placeholder="e.g. 5 / 5"></div>
+      <div><label for="f-q2">Module 2 quiz score</label><input id="f-q2" type="text" placeholder="e.g. 4 / 5"></div>
+      <div class="full"><label for="f-a1">Assignment 1 — repo link or submission reference</label><input id="f-a1" type="text" placeholder="https://github.com/&lt;username&gt;/git-practice"></div>
+      <div class="full"><label for="f-a2issue">Assignment 2 — issue link</label><input id="f-a2issue" type="text" placeholder="https://github.com/CZMGC-SY202528/.../issues/..."></div>
+      <div class="full"><label for="f-a2pr">Assignment 2 — pull request link</label><input id="f-a2pr" type="text" placeholder="https://github.com/CZMGC-SY202528/.../pull/..."></div>
+      <div><label for="f-date">Date</label><input id="f-date" type="date"></div>
+    </div>
+    <button type="button" class="btn" id="gen-btn">Generate certificate</button>
+  </form>
+
+  <div class="cert" id="cert">
+    <span class="k">CZMGC-SY202528 · Open Source Tools, Git &amp; GitHub</span>
+    <h2>Certificate of Completion</h2>
+    <div class="name" id="c-name">—</div>
+
+    <div class="cert-grid">
+      <div class="cert-row"><span class="k">Team</span><div class="v" id="c-team">—</div></div>
+      <div class="cert-row"><span class="k">Date</span><div class="v" id="c-date">—</div></div>
+      <div class="cert-row"><span class="k">Module 1 — Git Fundamentals</span><div class="v" id="c-q1">—</div></div>
+      <div class="cert-row"><span class="k">Module 2 — Contributing to OSS</span><div class="v" id="c-q2">—</div></div>
+    </div>
+
+    <div class="cert-row cert-links">
+      <span class="k">Submitted work</span>
+      <a id="c-a1" href="#" target="_blank" rel="noopener">Assignment 1 —</a>
+      <a id="c-a2issue" href="#" target="_blank" rel="noopener">Assignment 2 (issue) —</a>
+      <a id="c-a2pr" href="#" target="_blank" rel="noopener">Assignment 2 (pull request) —</a>
+    </div>
+
+    <div class="cert-foot">
+      <span class="seal accent">✓ modules 1–2 complete</span>
+      <span class="k">CZMGC-SY202528</span>
+    </div>
+  </div>
+
+  <button type="button" class="btn secondary no-print" id="print-btn" style="display:none;">Print / Save as PDF</button>
+
+</main>
+
+<footer>CZMGC-SY202528 · Open Source Tools, Git &amp; GitHub · built for GitHub Pages</footer>
+
+<script src="assets/script.js"></script>
+<script>
+document.getElementById('gen-btn').addEventListener('click', () => {
+  const val = id => document.getElementById(id).value.trim();
+  document.getElementById('c-name').textContent = val('f-name') || '—';
+  document.getElementById('c-team').textContent = val('f-team') || '—';
+  document.getElementById('c-date').textContent = val('f-date') || new Date().toLocaleDateString();
+  document.getElementById('c-q1').textContent = val('f-q1') || 'not recorded';
+  document.getElementById('c-q2').textContent = val('f-q2') || 'not recorded';
+
+  const setLink = (id, url, label) => {
+    const el = document.getElementById(id);
+    if(url){ el.href = url; el.textContent = label + ' ' + url; }
+    else { el.removeAttribute('href'); el.textContent = label + ' not submitted'; }
+  };
+  setLink('c-a1', val('f-a1'), 'Assignment 1 —');
+  setLink('c-a2issue', val('f-a2issue'), 'Assignment 2 (issue) —');
+  setLink('c-a2pr', val('f-a2pr'), 'Assignment 2 (PR) —');
+
+  document.getElementById('cert').classList.add('show');
+  document.getElementById('print-btn').style.display = 'inline-block';
+  document.getElementById('cert').scrollIntoView({behavior:'smooth'});
+});
+document.getElementById('print-btn').addEventListener('click', () => window.print());
+</script>
+</body>
+</html>
