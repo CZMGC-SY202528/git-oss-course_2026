@@ -1,58 +1,303 @@
-# Git & Open Source Contribution — Course Site
+# 📚 Git & Open Source Contribution — Class Repository
 
-A self-contained static site (no build step) covering:
-- **Module 1** — Git Fundamentals (repos, commits, branches, merges)
-- **Module 2** — Contributing to Open Source (issues, pull requests, code review)
-- **Assignments** — one per module, with rubrics
-- **Quizzes** — embedded in each module, graded instantly in-browser
+Welcome to the **Git & Open Source Contribution Course**! This is your learning space to practice Git, GitHub, and professional collaboration skills.
 
-## Files
+---
+
+## 🎯 Course Overview
+
+This repository is designed for **class-wise team-based learning**. Each class has been organized into teams, and you'll practice:
+
+- ✅ Creating branches and commits
+- ✅ Opening Pull Requests (PRs)
+- ✅ Reviewing code and providing feedback
+- ✅ Resolving merge conflicts
+- ✅ Collaborating with your team
+
+---
+
+## 🚀 Quick Start Guide
+
+### **Step 1: Set Up Your Local Environment**
+
+```bash
+# Clone the repository
+git clone https://github.com/CZMGC-SY202528/git-oss-course_2026.git
+cd git-oss-course_2026
+
+# Check your current branch
+git branch
+
+# See remote URLs
+git remote -v
 ```
-index.html          course home + roadmap
-module1.html         Git fundamentals lesson + quiz
-module2.html         contributing lesson + quiz
-assignments.html      both assignments + rubrics
-assets/style.css      shared design system
-assets/script.js      quiz grading logic
+
+### **Step 2: Create Your Feature Branch**
+
+Use your **class team name** and **your name** in the branch name:
+
+```bash
+# Branch naming format: feature/class-section/your-name
+git checkout -b feature/class-a/john-doe
+# or
+git checkout -b feature/section-b/jane-smith
 ```
 
-## Publish it on your GitHub profile (GitHub Pages)
+### **Step 3: Make Your Changes**
 
-You have two good options:
+Edit files, add content, or complete assignments:
 
-### Option A — a dedicated course repo (recommended)
-1. Create a new repository on your **personal profile**, e.g. `git-oss-course`.
-2. Upload these files (keep the folder structure — `assets/` must stay a subfolder).
-3. Go to **Settings → Pages**.
-4. Under "Build and deployment," set **Source: Deploy from a branch**, branch: `main`, folder: `/ (root)`.
-5. Save. Your course goes live at:
-   `https://<your-username>.github.io/git-oss-course/`
+```bash
+git add .
+git commit -m "Add: Brief description of your change"
+git push origin feature/class-a/john-doe
+```
 
-### Option B — your profile's root site
-If you want it at `https://<your-username>.github.io/` directly:
-1. Create a repository named **exactly** `<your-username>.github.io`.
-2. Upload these files to its root.
-3. Enable Pages the same way (Settings → Pages → Deploy from branch → `main` → `/root`).
-4. It will be live at `https://<your-username>.github.io/`.
+### **Step 4: Open a Pull Request (PR)**
 
-> Either way, GitHub Pages typically takes 1–2 minutes to build after your first push. Refresh the Pages settings tab to see the live link once it's ready.
+1. Go to [github.com/CZMGC-SY202528/git-oss-course_2026](https://github.com/CZMGC-SY202528/git-oss-course_2026)
+2. Click **"Pull Requests"** tab
+3. Click **"New Pull Request"**
+4. Select your branch
+5. **Fill out the PR template completely** ← This is important!
+6. Click **"Create Pull Request"**
 
-## Editing content later
-- Quiz questions live directly in `module1.html` / `module2.html` as `<div class="quiz-q" data-correct="...">` blocks — copy an existing block to add a question.
-- Colors and type are defined once as CSS variables at the top of `assets/style.css`.
-- No backend, no build tools, no dependencies beyond a Google Fonts CDN link — this can be hosted anywhere that serves static files, not just GitHub Pages.
+### **Step 5: Respond to Feedback**
 
-## Suggested course sequence
-Point students to Module 1 first (local Git only), then Module 2 (GitHub workflow on `CZMGC-SY202528`), assigning the matching assignment right after each module.
+- 💬 Read your instructor's comments
+- 📝 Make requested changes in your branch
+- 🔄 Push updates (PR updates automatically)
+- ✅ Request review when ready
 
-## Certificate page
-`certificate.html` lets a student (or you) fill in their name, team, quiz scores, and assignment links, then generates a printable/PDF-able completion certificate (`window.print()` — no server, no dependencies). Useful as a portfolio artifact or as a quick grading record.
+---
 
-## Structured assignment submission (GitHub-native, no Google Form needed)
-Instead of students pasting links in chat, use GitHub's own issue/PR forms — they live in a separate small bundle, `github-templates/`, included alongside this site. See `github-templates/README.md` for exact deployment steps; short version:
+## 📋 Your Class Teams
 
-1. Create a repository named **`.github`** inside the `CZMGC-SY202528` organization (this is a GitHub-recognized special repo name).
-2. Upload the contents of `github-templates/.github/` into it, preserving the `ISSUE_TEMPLATE/` folder.
-3. Every repo in the org that doesn't have its own templates will automatically pick these up:
-   - **New issue** → choice between "Contribution task" (Assignment 2) and "Assignment 1 submission" forms, both with required fields and checklists.
-   - **New pull request** → auto-fills with the What / Why / How-to-test template and a checklist, including a `Closes #` reminder.
+Teams have been organized by **section/class**. 
+
+**Each team has:**
+- 🔐 Access to this repository
+- 📊 Project board for tracking assignments
+- 💬 Discussion space for collaboration
+- 🎓 Learning resources
+
+> Check your **Teams** tab in the GitHub organization to see which team you belong to.
+
+---
+
+## 📝 Assignment Workflow
+
+### **For Each Assignment:**
+
+1. **Create a branch** from `main`
+   ```bash
+   git checkout main
+   git pull origin main
+   git checkout -b feature/assignment-[number]
+   ```
+
+2. **Complete the work** on your branch
+
+3. **Commit with clear messages**
+   ```bash
+   git commit -m "Complete: Assignment 1 - Add student profile"
+   ```
+
+4. **Push to GitHub**
+   ```bash
+   git push origin feature/assignment-[number]
+   ```
+
+5. **Open a Pull Request** with details:
+   - What you did
+   - How to test it
+   - Any challenges you faced
+
+6. **Get feedback** from your instructor or classmates
+
+7. **Make changes** if requested
+
+8. **Merge** once approved ✅
+
+---
+
+## 🌳 Git Commands Quick Reference
+
+```bash
+# Clone the repo
+git clone <url>
+
+# Create and switch to a branch
+git checkout -b feature/my-feature
+
+# Switch between branches
+git checkout main
+git checkout feature/my-feature
+
+# Check your current branch
+git branch
+
+# See what changed
+git status
+
+# Stage changes
+git add .
+git add file.txt
+
+# Commit with a message
+git commit -m "Add: Description of change"
+
+# Push to GitHub
+git push origin feature/my-feature
+
+# Pull latest changes from main
+git pull origin main
+
+# View commit history
+git log --oneline
+
+# Undo last commit (before pushing)
+git reset --soft HEAD~1
+
+# Update your branch with latest main (before PR)
+git fetch origin
+git rebase origin/main
+```
+
+---
+
+## ✅ Before Opening a PR — Checklist
+
+- [ ] I've read the `CONTRIBUTING.md` file
+- [ ] My branch name follows the naming convention
+- [ ] I've tested my changes locally
+- [ ] I've committed with clear, descriptive messages
+- [ ] I've pushed my changes to GitHub
+- [ ] The PR template is completely filled out
+- [ ] I've linked any related issues (if applicable)
+- [ ] My code follows the project's style guide
+- [ ] I'm not committing directly to `main` ✋
+
+---
+
+## 🔍 Code Review Guidelines
+
+### **When Reviewing Others' PRs:**
+
+✅ **DO:**
+- 💡 Suggest improvements (be constructive)
+- 🎯 Ask clarifying questions
+- 👍 Acknowledge good work
+- 📚 Share resources/links
+- 🤝 Be respectful and supportive
+
+❌ **DON'T:**
+- 😠 Make negative comments
+- 🚫 Demand changes without explanation
+- 🤐 Ignore feedback on your own PRs
+- 💔 Discourage team members
+
+---
+
+## 📚 Learning Resources
+
+| Resource | Purpose |
+|----------|---------|
+| [CONTRIBUTING.md](./CONTRIBUTING.md) | How to contribute to this repo |
+| [GitHub Docs - PRs](https://docs.github.com/en/pull-requests) | Official PR documentation |
+| [GitHub Docs - Branches](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-and-deleting-branches-within-your-repository) | Branch management |
+| [Pro Git Book](https://git-scm.com/book/en/v2) | Free Git learning resource |
+
+---
+
+## 🎓 Learning Objectives
+
+By the end of this course, you will:
+
+1. ✅ Understand Git fundamentals (commits, branches, merges)
+2. ✅ Create and manage branches effectively
+3. ✅ Write clear commit messages
+4. ✅ Open and review Pull Requests
+5. ✅ Collaborate with team members
+6. ✅ Resolve merge conflicts
+7. ✅ Follow professional development workflows
+8. ✅ Contribute to open-source projects confidently
+
+---
+
+## ❓ Frequently Asked Questions
+
+### **Q: I made a mistake. Can I undo my commit?**
+**A:** Yes! Before pushing, use:
+```bash
+git reset --soft HEAD~1
+```
+
+### **Q: How do I update my branch with the latest changes from main?**
+**A:** Use rebase or pull:
+```bash
+git fetch origin
+git rebase origin/main
+# or
+git pull origin main
+```
+
+### **Q: What if there's a merge conflict?**
+**A:** 
+1. Run `git status` to see conflicting files
+2. Edit the files and resolve conflicts manually
+3. Run `git add .` and `git commit -m "Resolve: merge conflicts"`
+4. Push your changes
+
+### **Q: Can I delete my branch after the PR is merged?**
+**A:** Yes! GitHub will offer to delete it. You can also do it locally:
+```bash
+git branch -d feature/my-feature
+```
+
+### **Q: I pushed to the wrong branch. How do I fix it?**
+**A:** Ask your instructor for help — they can revert commits if needed.
+
+---
+
+## 📞 Getting Help
+
+- 💬 **Ask in your team's discussion** — your classmates might have the answer
+- 📧 **Leave a comment in your PR** — tag your instructor
+- 🔗 **Check existing issues** — your question might already be answered
+- 👥 **Attend office hours** — direct help from the instructor
+
+---
+
+## 🎉 Success Tips
+
+1. **Commit often** — Small, logical commits are easier to review
+2. **Write clear messages** — Future you will thank present you
+3. **Read feedback carefully** — Reviewers are helping you learn
+4. **Don't be afraid to ask questions** — That's what learning is about
+5. **Help your classmates** — Reviewing others' code is great practice
+6. **Practice locally first** — Test your changes before pushing to GitHub
+
+---
+
+## 📍 Repository Links
+
+- **Main Repo:** [github.com/CZMGC-SY202528/git-oss-course_2026](https://github.com/CZMGC-SY202528/git-oss-course_2026)
+- **Organization:** [github.com/orgs/CZMGC-SY202528](https://github.com/orgs/CZMGC-SY202528)
+- **Pull Requests:** [View all PRs](https://github.com/CZMGC-SY202528/git-oss-course_2026/pulls)
+- **Issues:** [View all Issues](https://github.com/CZMGC-SY202528/git-oss-course_2026/issues)
+
+---
+
+## 📜 License
+
+This repository is for educational purposes. See individual files for license information.
+
+---
+
+**Happy coding! 🚀 Let's learn Git and GitHub together!**
+
+---
+
+*Last Updated: 2026-09-10*
+*Course Instructor: [Your Name]*
