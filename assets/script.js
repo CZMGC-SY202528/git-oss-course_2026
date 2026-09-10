@@ -1,4 +1,4 @@
-// Highlight current page in nav
+// Highlight the current page in navigation
 document.querySelectorAll('nav.crumbs a').forEach(a => {
   if (a.getAttribute('href') === location.pathname.split('/').pop()) {
     a.classList.add('active');
@@ -35,7 +35,7 @@ function initQuiz(formId){
       }
     });
     scoreBox.style.display = 'block';
-    scoreBox.textContent = `Score: ${correctCount} / ${questions.length} correct.`;
+    scoreBox.textContent = `Your Score: ${correctCount} / ${questions.length} correct.`;
   });
 
   resetBtn.addEventListener('click', () => {
