@@ -301,3 +301,8 @@ This repository is for educational purposes. See individual files for license in
 
 *Last Updated: 2026-09-10*
 *Course Instructor: [Your Name]*
+
+## Student Contributor
+
+- **Name:** Alfiza Malek
+- **Contribution:** Practiced Git branching, commits, and GitHub pull request workflow.
